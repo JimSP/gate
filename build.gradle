@@ -1,0 +1,65 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+jar {
+	baseName = 'gate-soluction'
+	version = '0.0.1-SNAPSHOT'
+}
+
+archivesBaseName = 'gate-soluction'
+group = 'com.github.jimsp'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile project(':gate-commum-data')
+	compile project(':gate-ldap-server')
+	compile project(':gate-rbac-server')
+	compile project(':gate-rest-api')
+    compile project(':gate-client')
+    compile project(':gate-dto')
+	compile project(':gate-canonico')
+}
+
+allprojects {
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	apply plugin: 'maven'
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	compileJava {
+    	options.fork = true
+    	options.incremental = true
+	}
+	
+	repositories {
+		mavenCentral()
+		maven {url "http://central.maven.org/maven2"}
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }	
+	}
+	
+	task javadocJar(type: Jar) {
+    	classifier = 'javadoc'
+    	from javadoc
+	}
+	
+	task sourcesJar(type: Jar) {
+	    classifier = 'sources'
+	    from sourceSets.main.allSource
+	}
+	
+	artifacts {
+	    archives javadocJar, sourcesJar
+	}
+
+	subprojects {
+	    group = 'com.github.jimsp'
+	    version = '0.0.1-SNAPSHOT'
+	}
+}

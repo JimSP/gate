@@ -1,0 +1,10 @@
+/.gradle/
+*build/
+gradle.properties
+.class
+*/bin/
+settings.xml
+.project
+.classpath
+.gpg
+.asc

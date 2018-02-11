@@ -1,0 +1,33 @@
+buildscript {
+    ext { springBootVersion = '1.5.10.RELEASE' }
+    repositories { mavenCentral() }
+    dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'gate-rbac-server'
+}
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	runtime('org.springframework.boot:spring-boot-devtools')
+	
+	compile('com.hazelcast:hazelcast')
+	compile('com.hazelcast:hazelcast-spring')
+	
+	compile project(':gate-canonico')
+	compile project(':gate-commum-data')
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
