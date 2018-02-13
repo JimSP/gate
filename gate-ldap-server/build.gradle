@@ -21,7 +21,6 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile('org.springframework.boot:spring-boot-starter-data-ldap')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	
 	compile ('com.unboundid:unboundid-ldapsdk')
@@ -29,6 +28,7 @@ dependencies {
 	compile('com.hazelcast:hazelcast-spring')
 	
 	compile project(':gate-canonico')
+	compile project(':gate-ldap-data')
 	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

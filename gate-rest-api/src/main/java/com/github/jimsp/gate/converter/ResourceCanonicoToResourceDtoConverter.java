@@ -4,15 +4,15 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import com.github.jimsp.gate.canonial.ResourceCanonico;
-import com.github.jimsp.gate.dto.ResourceDto;
+import com.github.jimsp.gate.dto.request.ResourceRequestDto;
 
-@Component
-public class ResourceCanonicoToResourceDtoConverter implements Converter<ResourceCanonico, ResourceDto> {
+@Component("resourceCanonicoToResourceDtoConverter")
+public class ResourceCanonicoToResourceDtoConverter implements Converter<ResourceCanonico, ResourceRequestDto> {
 
 	@Override
-	public ResourceDto convert(final ResourceCanonico resourceCanonico) {
-		return ResourceDto.create( //
-				resourceCanonico.getIdentifier(), //
+	public ResourceRequestDto convert(final ResourceCanonico resourceCanonico) {
+		return ResourceRequestDto.create( //
+				resourceCanonico.getName(), //
 				resourceCanonico.getPattern(), //
 				resourceCanonico.getPattern());
 	}

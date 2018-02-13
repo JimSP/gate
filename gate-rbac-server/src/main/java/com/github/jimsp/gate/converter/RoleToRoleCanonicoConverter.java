@@ -7,9 +7,9 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import com.github.jimsp.gate.canonial.RoleCanonico;
-import com.github.jimsp.gate.entities.Role;
+import com.github.jimsp.gate.rbac.entities.Role;
 
-@Component
+@Component("roleToRoleCanonicoConverter")
 public class RoleToRoleCanonicoConverter implements Converter<Role, RoleCanonico> {
 
 	@Autowired

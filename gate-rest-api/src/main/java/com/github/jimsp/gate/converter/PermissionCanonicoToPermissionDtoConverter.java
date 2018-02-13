@@ -5,12 +5,12 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import com.github.jimsp.gate.canonial.PermissionCanonico;
-import com.github.jimsp.gate.dto.OperationDto;
-import com.github.jimsp.gate.dto.PermissionDto;
-import com.github.jimsp.gate.dto.ResourceDto;
+import com.github.jimsp.gate.dto.request.OperationRequestDto;
+import com.github.jimsp.gate.dto.request.PermissionRequestDto;
+import com.github.jimsp.gate.dto.request.ResourceRequestDto;
 
-@Component
-public class PermissionCanonicoToPermissionDtoConverter implements Converter<PermissionCanonico, PermissionDto> {
+@Component("permissionCanonicoToPermissionDtoConverter")
+public class PermissionCanonicoToPermissionDtoConverter implements Converter<PermissionCanonico, PermissionRequestDto> {
 
 	@Autowired
 	private OperationCanonicoToOperationDtoConverter operationCanonicoToOperationDtoConverter;
@@ -19,17 +19,15 @@ public class PermissionCanonicoToPermissionDtoConverter implements Converter<Per
 	private ResourceCanonicoToResourceDtoConverter resourceCanonicoToResourceDtoConverter;
 
 	@Override
-	public PermissionDto convert(final PermissionCanonico permissionCanonico) {
-		final OperationDto operation = operationCanonicoToOperationDtoConverter //
+	public PermissionRequestDto convert(final PermissionCanonico permissionCanonico) {
+		final OperationRequestDto operation = operationCanonicoToOperationDtoConverter //
 				.convert(permissionCanonico //
 						.getOperation()); //
 
-		final ResourceDto resource = resourceCanonicoToResourceDtoConverter //
+		final ResourceRequestDto resource = resourceCanonicoToResourceDtoConverter //
 				.convert(permissionCanonico //
 						.getResource()); //
-		return PermissionDto.create(permissionCanonico.getName(), //
-				permissionCanonico.getDescription(), //
-				operation, //
-				resource);
+		return PermissionRequestDto.create(permissionCanonico.getName(), permissionCanonico.getDescription(),
+				permissionCanonico.getPermanent(), operation, resource);
 	}
 }

@@ -34,4 +34,9 @@ public class OperationCanonico implements Serializable {
 	public Boolean getPermanent() {
 		return permanent;
 	}
+
+	@Override
+	public String toString() {
+		return "OperationCanonico [name=" + name + ", description=" + description + ", permanent=" + permanent + "]";
+	}
 }

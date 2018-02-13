@@ -10,7 +10,7 @@ import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 
-@Configuration
+@Configuration("hazelcastConfiguration")
 public class HazelcastConfiguration {
 	
 	@Bean

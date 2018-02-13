@@ -15,16 +15,18 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile project(':gate-commum-data')
+	compile project(':gate-canonico')
+    compile project(':gate-rbac-data')
+    compile project(':gate-ldap-data')
 	compile project(':gate-ldap-server')
 	compile project(':gate-rbac-server')
+    compile project(':gate-dto')
 	compile project(':gate-rest-api')
     compile project(':gate-client')
-    compile project(':gate-dto')
-	compile project(':gate-canonico')
 }
 
 allprojects {
+
 	apply plugin: 'java'
 	apply plugin: 'eclipse'
 	apply plugin: 'maven'

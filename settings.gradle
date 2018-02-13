@@ -1,9 +1,10 @@
 rootProject.name = 'gate-soluction'
 
-include ':gate-commum-data'
+include ':gate-canonico'
+include ':gate-ldap-data'
+include ':gate-rbac-data'
 include ':gate-ldap-server'
 include ':gate-rbac-server'
+include ':gate-dto'
 include ':gate-rest-api'
 include ':gate-client'
-include ':gate-dto'
-include ':gate-canonico'

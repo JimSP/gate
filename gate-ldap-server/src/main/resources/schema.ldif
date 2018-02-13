@@ -25,6 +25,7 @@ cn: John Doe
 sn: John
 uid: john
 password: secret
+roles: A
 
 dn: uid=jihn,ou=people,dc=memorynotfound,dc=com
 objectclass: top
@@ -35,6 +36,7 @@ cn: Jihn Die
 sn: Jihn
 uid: jihn
 password: secret
+roles: B
 
 dn: uid=jahn,ou=people,dc=memorynotfound,dc=com
 objectclass: top
@@ -45,6 +47,7 @@ cn: Jahn Dae
 sn: Jahn
 uid: jahn
 password: secret
+roles: C
 
 # Create Groups
 dn: cn=developers,ou=groups,dc=memorynotfound,dc=com
@@ -61,3 +64,4 @@ objectclass: groupOfUniqueNames
 cn: managers
 ou: manager
 uniqueMember: uid=jahn,ou=people,dc=memorynotfound,dc=com
+

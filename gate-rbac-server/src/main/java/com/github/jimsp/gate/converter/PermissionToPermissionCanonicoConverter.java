@@ -7,21 +7,21 @@ import org.springframework.stereotype.Component;
 import com.github.jimsp.gate.canonial.OperationCanonico;
 import com.github.jimsp.gate.canonial.PermissionCanonico;
 import com.github.jimsp.gate.canonial.ResourceCanonico;
-import com.github.jimsp.gate.entities.Permission;
+import com.github.jimsp.gate.rbac.entities.Permission;
 
-@Component
+@Component("permissionToPermissionCanonicoConverter")
 public class PermissionToPermissionCanonicoConverter implements Converter<Permission, PermissionCanonico> {
 
 	@Autowired
 	private ResourceToResourceCanonicoConverter resourceToResourceCanonicoConverter;
 
 	@Autowired
-	private OperationCanonicoToOperationCoverter operationCanonicoToOperationCoverter;
+	private OperationToOperationCanonicoCoverter operationToOperationCanonicoCoverter;
 
 	@Override
 	public PermissionCanonico convert(final Permission permission) {
 		final ResourceCanonico resource = resourceToResourceCanonicoConverter.convert(permission.getResource());
-		final OperationCanonico operation = operationCanonicoToOperationCoverter.convert(permission.getOperation());
+		final OperationCanonico operation = operationToOperationCanonicoCoverter.convert(permission.getOperation());
 		return PermissionCanonico.create(permission.getName(), permission.getDescription(), operation, resource);
 	}
 }

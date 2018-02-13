@@ -8,30 +8,30 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import com.github.jimsp.gate.canonial.RoleCanonico;
-import com.github.jimsp.gate.dto.PermissionDto;
-import com.github.jimsp.gate.dto.RoleDto;
+import com.github.jimsp.gate.dto.request.PermissionRequestDto;
+import com.github.jimsp.gate.dto.request.RoleRequestDto;
 
-@Component
-public class RoleCanonicoToRoleDtoConverter implements Converter<RoleCanonico, RoleDto> {
+@Component("roleCanonicoToRoleDtoConverter")
+public class RoleCanonicoToRoleDtoConverter implements Converter<RoleCanonico, RoleRequestDto> {
 
 	@Autowired
 	private PermissionCanonicoToPermissionDtoConverter permissionCanonicoToPermissionDtoConverter;
 
 	@Override
-	public RoleDto convert(final RoleCanonico roleCanonico) {
-		final List<PermissionDto> permissions = roleCanonico //
+	public RoleRequestDto convert(final RoleCanonico roleCanonico) {
+		final List<PermissionRequestDto> permissions = roleCanonico //
 				.getPermissions() //
 				.parallelStream() //
 				.map(permission -> permissionCanonicoToPermissionDtoConverter.convert(permission)) //
 				.collect(Collectors.toList()); //
 
-		final List<RoleDto> childRoleNames = roleCanonico.getChildRoleNames() //
+		final List<RoleRequestDto> childRoleNames = roleCanonico.getChildRoleNames() //
 				.parallelStream() //
 				.map(roleChildName -> //
 				convert(roleChildName)) //
 				.collect(Collectors.toList());
 
-		return RoleDto.create(roleCanonico.getName(), //
+		return RoleRequestDto.create(roleCanonico.getName(), //
 				roleCanonico.getDescription(), //
 				roleCanonico.getAssignable(), //
 				roleCanonico.getPermanent(), //
